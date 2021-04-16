@@ -8,3 +8,16 @@ before_install:
 
 script: 
   - docker run -e CI=true trescube/docker-react npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "docker-react-2"
+  env: "Dockerreact2-env"
+  bucket_name: "elasticbeanstalk-us-east-1-086334828559"
+  bucket_path: "docker-react-2"
+  on:
+    branch: "master"
+  access_key_id: "$AWS_ACCESS_KEY"
+  secret_access_key: 
+    secure: "$AWS_SECRET_KEY"
